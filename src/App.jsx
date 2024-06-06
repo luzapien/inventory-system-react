@@ -1,8 +1,7 @@
 import styled, { ThemeProvider } from 'styled-components'
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import { AuthContextProvider } from './context/AuthContext'
 import MyRoutes from './routers/routes'
-import { createContext } from 'react'
 import { Light, Dark } from '../src/styles/themes'
 import { Device } from '../src/styles/breackpoints'
 import { Sidebar } from './components/organisms/sidebar/Sidebar'
@@ -11,14 +10,15 @@ export const ThemeContext = createContext(null)
 
 function App() {
     const [themeUsed, setThemeUsed] = useState('dark')
-    const theme = themeUsed === 'light' ? ' light' : 'dark'
-    const themeStyle = theme === 'light' ? Light : Dark
+    console.log(themeUsed)
+    const theme = themeUsed === 'light' ? Light : Dark
+
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
         <>
             <ThemeContext.Provider value={{ theme, setThemeUsed }}>
-                <ThemeProvider theme={themeStyle}>
+                <ThemeProvider theme={theme}>
                     <AuthContextProvider>
                         <Container className={sidebarOpen ? 'active' : ''}>
                             <section className='contentSidebar'>

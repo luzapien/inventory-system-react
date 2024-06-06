@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 import { useContext } from 'react'
 import { ThemeContext } from '../../../App'
-export function ToggleTema() {
-    const { setTheme } = useContext(ThemeContext)
 
-    const ToggleTheme = () => {
-        setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
+export const ToggleTheme = () => {
+    const { setThemeUsed } = useContext(ThemeContext)
+    const changeTheme = () => {
+        setThemeUsed((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     }
     return (
         <Container>
             <div className='container'>
                 <label className='toggle'>
-                    <input id='switch' className='input' type='checkbox' onClick={ToggleTheme} />
+                    <input id='switch' className='input' type='checkbox' onClick={changeTheme}  />
                     <div className='icon icon--moon'>
                         <svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 512 512' id='moon'>
                             <g>
