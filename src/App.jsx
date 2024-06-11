@@ -6,6 +6,7 @@ import { Light, Dark } from '../src/styles/themes'
 import { Device } from '../src/styles/breackpoints'
 import { Sidebar } from './components/organisms/sidebar/Sidebar'
 import { BurgerMenu } from './components/organisms/BurgerMenu'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export const ThemeContext = createContext(null)
 
@@ -32,6 +33,7 @@ function App() {
                                 <MyRoutes />
                             </section>
                         </Container>
+                        <ReactQueryDevtools initialIsOpen={false} />
                     </AuthContextProvider>
                 </ThemeProvider>
             </ThemeContext.Provider>

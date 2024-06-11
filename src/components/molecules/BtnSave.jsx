@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Icon } from '../atoms/Icon'
-export function Btnsave({ funcion, titulo, bgcolor, icono, url }) {
+
+export function BtnSave({ funcion, titulo, bgcolor, icono, url }) {
     return (
         <Container type='submit' $bgcolor={bgcolor}>
             <Icon>{icono}</Icon>

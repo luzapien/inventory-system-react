@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { v } from '../../../styles/variables'
-import { Btnsave } from '../../molecules/BtnSave'
+import { BtnSave } from '../../molecules/BtnSave'
 // import { v, Btnsave, useAuthStore } from '../../../index'
 export function SidebarCard() {
     return (
@@ -11,7 +11,7 @@ export function SidebarCard() {
                 <div className='circle2'></div>
                 <h3>Cerrar sesión</h3>
                 <div className='contentBtn'>
-                    <Btnsave titulo='Cerrar ...' bgcolor='#f8f2fd' />
+                    <BtnSave titulo='Cerrar ...' bgcolor='#f8f2fd' />
                 </div>
             </div>
         </Container>

@@ -1,33 +1,29 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-import { supabase } from '../supabase/supabase.config'
+import { createContext, useContext, useEffect, useState } from 'react';
+import { supabase } from '../supabase/supabase.config';
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-            async (event, session) => {
-                console.log(event, session)
-                if (session?.user === null) {
-                    setUser(null)
-                } else {
-                    setUser(session?.user)
-                }
+        const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log(event, session);
+            if (session?.user === null) {
+                setUser(null);
+            } else {
+                setUser(session?.user);
             }
-        })
-        return () => {
-            authListener.subscription //La subscripvion es como un oyente que a cada  rato va a estar escuchando y actualizandose
-        }
-    }, [])
-    return (
-        <AuthContext.Provider value={{user}}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+        });
 
-    export const UserAuth = () => {
-        return useContext
-    }
+        return () => {
+            authListener.subscription.unsubscribe();
+        };
+    }, []);
+
+    return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+};
+
+export const UserAuth = () => {
+    return useContext(AuthContext);
+};
